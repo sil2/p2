@@ -10,6 +10,7 @@ import fr from '@/locales/fr.json'
 
 import App from './App.vue'
 import router from './router'
+
 import store from './store'
 
 const i18n = createI18n({
@@ -23,6 +24,7 @@ const i18n = createI18n({
 
 createApp(App)
 .use(router)
-.use(store)
 .use(i18n)
+.use(store)
+
 .mount('#app')

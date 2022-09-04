@@ -31,6 +31,11 @@
                   :href="href" @click="navigate">{{$t('about')}}</a>
               </router-link>
 
+              <router-link to="/profile" v-slot="{ href, route, navigate, isActive, isExactActive }">
+                <a :class="[isActive?'bg-red-900 text-white' : 'text-gray-300 hover:bg-red-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']"
+                  :href="href" @click="navigate">{{$t('profile')}}</a>
+              </router-link>
+
             </div>
           </div>
         </div>
