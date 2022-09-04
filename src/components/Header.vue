@@ -1,16 +1,24 @@
 <template>
 
-<div class="locale-changer">
-    <select v-model="$i18n.locale">
-      <option v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`" :value="locale">{{ locale }}</option>
-    </select>
-  </div>
-  
-    <div id="nav">
-        Im a header
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link> |
+  <NavBar />
+  <LanguageSelect />
 
-    </div>
+  
 
 </template>
+
+
+<script>
+
+import NavBar from "@/components/NavBar.vue";
+import LanguageSelect from "@/components/LanguageSelect.vue";
+
+export default {
+  name: "header",
+  components: {
+    NavBar,
+    LanguageSelect
+  }
+};
+
+</script>
