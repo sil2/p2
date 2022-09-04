@@ -4,7 +4,12 @@
 
     <div class="col-span-6 sm:col-span-3">
                   <label for="first-name" class="block text-sm font-medium text-gray-700">First name</label>
-                  <input v-model="newName" type="text" name="first-name" id="first-name" autocomplete="given-name" class="mb-4 p-1 mt-1 block w-full rounded-md border-gray-600 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm" />
+                  <input v-model="newName" 
+                  type="text" name="first-name" 
+                  id="first-name" autocomplete="given-name" 
+                  class=" border mb-4 pl-5 p-2 mt-1 block w-full rounded-md border-gray-300 
+                  focus:outline-none focus:ring focus:ring-red-500
+                 " />
                 </div>
 
 

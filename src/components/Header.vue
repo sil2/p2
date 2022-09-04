@@ -14,7 +14,7 @@ import NavBar from "@/components/NavBar.vue";
 import LanguageSelect from "@/components/LanguageSelect.vue";
 
 export default {
-  name: "header",
+  name: "appHeader",
   components: {
     NavBar,
     LanguageSelect

@@ -17,7 +17,6 @@
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 import NavBar from "@/components/NavBar.vue";
-import Login from "@/components/Login.vue";
 
 export default {
   name: "app",
@@ -25,7 +24,6 @@ export default {
     Header,
     NavBar,
     Footer,
-    Login
   }
 };
 

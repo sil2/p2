@@ -1,4 +1,6 @@
 {
 	"hello": "Bonjour",
-    "language": "Language"
+    "language": "Language",
+    "about": "AboutFR",
+    "home": "homeFR"
 }
