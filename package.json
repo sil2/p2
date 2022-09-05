@@ -10,13 +10,15 @@
   },
   "dependencies": {
     "axios": "^0.27.2",
+    "vee-validate": "^4.6.7",
     "vue": "^3.2.37",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.5",
     "vue-session": "^1.0.0",
     "vue-sessionstorage": "^1.0.0",
     "vue3-storage": "^0.1.11",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@intlify/unplugin-vue-i18n": "^0.5.0",

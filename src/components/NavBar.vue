@@ -35,32 +35,72 @@
           md:flex md:space-y-0 md:flex-row md:items-center md:space-x-1 md:mt-0
         ">
 
-           <router-link to="/" v-slot="{ href, route, navigate, isActive, isExactActive }">
-                <a :class="[isActive?'bg-red-900 text-white' : 'text-gray-300 hover:bg-red-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']"
-                  :href="href" @click="navigate">{{$t('home')}}</a>
-              </router-link>
+        <router-link to="/" v-slot="{ href, route, navigate, isActive, isExactActive }">
+          <a :class="[isActive?'bg-red-900 text-white' : 'text-gray-300 hover:bg-red-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']"
+            :href="href" @click="navigate">{{$t('home')}}</a>
+        </router-link>
 
-              <router-link to="/about" v-slot="{ href, route, navigate, isActive, isExactActive }">
-                <a :class="[isActive?'bg-red-900 text-white' : 'text-gray-300 hover:bg-red-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']"
-                  :href="href" @click="navigate">{{$t('about')}}</a>
-              </router-link>
+        <router-link to="/about" v-slot="{ href, route, navigate, isActive, isExactActive }">
+          <a :class="[isActive?'bg-red-900 text-white' : 'text-gray-300 hover:bg-red-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']"
+            :href="href" @click="navigate">{{$t('about')}}</a>
+        </router-link>
 
-              <router-link to="/profile" v-slot="{ href, route, navigate, isActive, isExactActive }">
-                <a :class="[isActive?'bg-red-900 text-white' : 'text-gray-300 hover:bg-red-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']"
-                  :href="href" @click="navigate">{{$t('profile')}}</a>
-              </router-link>
+      
+
+        <div v-if="!currentUser">
+
+          <router-link to="/register" v-slot="{ href, route, navigate, isActive, isExactActive }">
+            <a :class="[isActive?'bg-red-900 text-white' : 'text-gray-300 hover:bg-red-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']"
+              :href="href" @click="navigate">{{$t('register')}}</a>
+          </router-link>
+
+          <router-link to="/login" v-slot="{ href, route, navigate, isActive, isExactActive }">
+            <a :class="[isActive?'bg-red-900 text-white' : 'text-gray-300 hover:bg-red-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']"
+              :href="href" @click="navigate">{{$t('login')}}</a>
+          </router-link>
+        </div>
+        <div v-if="currentUser">
+
+      
+          <router-link to="/profile" v-slot="{ href, route, navigate, isActive, isExactActive }">
+            <a :class="[isActive?'bg-red-900 text-white' : 'text-gray-300 hover:bg-red-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']"
+              :href="href" @click="navigate">{{ currentUser.username }}</a>
+          </router-link>
+
+
+          <a class="nav-link" @click.prevent="logOut">
+            <font-awesome-icon icon="sign-out-alt" /> {{$t('logoout')}}
+          </a>
+        </div>
+
+
+
+
       </ul>
       <LanguageSelect />
     </nav>
- 
+
 
   </div>
 </template>
+
+<!-- https://www.bezkoder.com/vue-3-authentication-jwt/ -->
 <script>
 import { ref } from 'vue';
 import LanguageSelect from "@/components/LanguageSelect.vue";
 
 export default {
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
+  methods: {
+    logOut() {
+      this.$store.dispatch('auth/logout');
+      this.$router.push('/login');
+    }
+  },
   components: {
     LanguageSelect
   },
