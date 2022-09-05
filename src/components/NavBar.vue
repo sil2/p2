@@ -3,13 +3,12 @@
     <nav class="
         container
         px-6
-        py-8
+        py-2
         mx-auto
         md:flex md:justify-between md:items-center
       ">
       <div class="flex items-center justify-between">
-        <router-link to="/" class="text-xl font-bold text-gray-100 md:text-2xl hover:text-red-400
-          ">Logo
+        <router-link to="/" > <LogoSVG class="h-28 w-auto text-center text-white	 fill-current " />
         </router-link>
         <!-- Mobile menu button -->
         <div @click="toggleNav" class="flex md:hidden">
@@ -69,7 +68,7 @@
 
 
           <a class="nav-link" @click.prevent="logOut">
-            <font-awesome-icon icon="sign-out-alt" /> {{$t('logoout')}}
+             {{$t('logoout')}}
           </a>
         </div>
 
@@ -88,6 +87,7 @@
 <script>
 import { ref } from 'vue';
 import LanguageSelect from "@/components/LanguageSelect.vue";
+import LogoSVG from '@/assets/Goli.svg';
 
 export default {
   computed: {
@@ -102,7 +102,8 @@ export default {
     }
   },
   components: {
-    LanguageSelect
+    LanguageSelect,
+    LogoSVG
   },
   setup() {
     let showMenu = ref(false);

@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container mx-auto">
+  <div class="container-fluid mx-auto">
 
     <Header></Header>
 

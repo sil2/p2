@@ -18,7 +18,6 @@
     <option :selected="[$i18n.locale ? 'selected' : '']" v-for="locale in $i18n.availableLocales" :key="locale"
       :value="locale">{{locale}}</option>
   </select>
-{{storage.getStorageSync('locale')}}
 </template>
   
   <script setup>
