@@ -6,29 +6,22 @@ import { fileURLToPath } from 'url'
 import vueI18n from '@intlify/vite-plugin-vue-i18n'
 import svgLoader from 'vite-svg-loader'
 
+
 export default defineConfig({
-  
   server: {
-    server: {
       proxy: {
-        "/api": {
-          target: "http://gxa.goli.local",
+        '^/api/.*': {
+
+          target: "http://gxa.goli.local/",
           changeOrigin: true,
           secure: false,
-         // rewrite: (path) => path.replace(/^\/api/, ""),
+          rewrite: (path) => path.replace(/^\/api/, '/api/partners')
         },
-      },
     },
     open: true,
     https: false, 
     host: "p2.goli.local",
-   // port: 80,
-    secure: false,
-    strictPort: true,
-    hmr: {
-   //   port: 80,
-      host: "p2.goli.local",
-    }, 
+    secure: false
   },
   plugins: [
     vue(),

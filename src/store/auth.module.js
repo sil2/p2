@@ -1,13 +1,19 @@
 import AuthService from '@/services/auth.service';
-const user = JSON.parse(localStorage.getItem('user'));
+import { useStorage } from "vue3-storage";
+
+const storage = useStorage();
+
+const user = storage.hasKey('user')?JSON.parse(storage.getStorageSync('user')):null;
 const initialState = user
   ? { status: { loggedIn: true }, user }
   : { status: { loggedIn: false }, user: null };
+  
 export const auth = {
   namespaced: true,
   state: initialState,
   actions: {
     login({ commit }, user) {
+      
       return AuthService.login(user).then(
         user => {
           commit('loginSuccess', user);
@@ -23,6 +29,9 @@ export const auth = {
       AuthService.logout();
       commit('logout');
     },
+
+
+    
     register({ commit }, user) {
       return AuthService.register(user).then(
         response => {

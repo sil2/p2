@@ -42,7 +42,7 @@
           </button>
         </div>
       </Form>
-      <div v-if="message" class="alert" :class="successful ? 'alert-success' : 'alert-danger'">
+      <div v-if="message" class="alert">
         {{ message }}
       </div>
     </div>
@@ -95,6 +95,7 @@
           },
           (error) => {
             this.loading = false;
+            console.log('error',error)
             this.message =
               (error.response &&
                 error.response.data &&
