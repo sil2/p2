@@ -2,8 +2,6 @@
 
   <NavBar />
  
-  
-
 </template>
 
 
@@ -12,9 +10,9 @@
 import NavBar from "@/components/NavBar.vue";
 
 export default {
-  name: "appHeader",
   components: {
-    NavBar  }
+    NavBar 
+   }
 };
 
 </script>

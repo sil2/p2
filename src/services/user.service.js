@@ -6,11 +6,11 @@ import authHeader from './auth-header';
 class UserService {
   getPublicContent() {
 
-    return axios.get(import.meta.env.GXA_URI  + 'all');
+    return axios.get(import.meta.env.VITE_GXA_URI  + 'all');
   }
   getUserBoard() {
 
-    return axios.get(import.meta.env.GXA_URI  + 'user', { headers: authHeader() });
+    return axios.get(import.meta.env.VITE_GXA_URI  + 'user', { headers: authHeader() });
   }
   
 }

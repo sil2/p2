@@ -16,13 +16,11 @@
 
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-import NavBar from "@/components/NavBar.vue";
 
 export default {
   name: "app",
   components: {
     Header,
-    NavBar,
     Footer,
   }
 };

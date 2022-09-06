@@ -2,6 +2,13 @@
   <div class="about">
     <h1>About {{name}}</h1>
 
+    <div>
+    <div v-for="post in posts" v-bind:key="post.id">
+      <h2>{{ post.title }}</h2>
+      <p>{{ post.body }}</p>
+    </div>
+  </div>
+
     <div class="col-span-6 sm:col-span-3">
       <label for="first-name" class="block text-sm font-medium text-gray-700">First name</label>
       <input v-model="newName" type="text" name="first-name" id="first-name" autocomplete="given-name" class=" border mb-4 pl-5 p-2 mt-1 block w-full rounded-md border-gray-300 
@@ -25,6 +32,12 @@
     return store.state.user.name
   })
 
+  const posts = computed(()=>{
+    return store.getters.posts;
+  })
+
+  store.dispatch('loadPosts');  
+  
   const newName = ref('')
 
   function saveName(){

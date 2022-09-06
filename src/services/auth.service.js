@@ -1,10 +1,25 @@
 //https://www.bezkoder.com/vue-3-authentication-jwt/
 
 import axios from 'axios';
+import { useStorage } from "vue3-storage";
+
 class AuthService {
+
+  getToken(){
+    //is expired? is exists? ./
+    storage.setStorageSync("locale", 'mytoken');
+
+  }
   login(user) {
+
+    getToken();
+    //1 set request to get the token.
+    //2 save token into local storage.
+    //3 autorisationv request////
+    //console.log('VITE_GXA_URI',import.meta.env.VITE_GXA_URI)
+
     return axios
-      .post(import.meta.env.GXA_URI + 'signin', {
+      .post(import.meta.env.VITE_GXA_URI + 'signin', {
         username: user.username,
         password: user.password
       })
@@ -19,7 +34,7 @@ class AuthService {
     localStorage.removeItem('user');
   }
   register(user) {
-    return axios.post(import.meta.env.GXA_URI  + 'signup', {
+    return axios.post(import.meta.env.VITE_GXA_URI  + 'signup', {
       username: user.username,
       email: user.email,
       password: user.password
