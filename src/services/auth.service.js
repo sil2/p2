@@ -12,7 +12,7 @@ class AuthService {
   }
   login(user) {
 
-    getToken();
+    //getToken();
     //1 set request to get the token.
     //2 save token into local storage.
     //3 autorisationv request////
