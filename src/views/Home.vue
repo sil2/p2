@@ -5,41 +5,40 @@
       <h3>{{ content }}</h3>
     </header>
   </div>
-  
+
 </template>
 
-<script>
-import UserService from "@/services/user.service";
-export default {
-    name: "Home",
-    data() {
-        return {
-            content: "",
-        };
-    },
-    mounted() {
-        UserService.getPublicContent().then((response) => {
-            this.content = response.data;
-        }, (error) => {
-            this.content =
-                (error.response &&
-                    error.response.data &&
-                    error.response.data.message) ||
-                    error.message ||
-                    error.toString();
-        });
-    },
-    components: { Dropdown }
-};
-
-  import { computed } from 'vue';
-  import {useStore} from 'vuex';
-
+<script setup>
+  import UserService from "@/services/user.service";
+  import { ref, computed,onMounted } from 'vue'
   import Dropdown from "@/components/partials/Dropdown.vue";
+  import { useUserStore } from '@/stores/user.store'
 
 
-  const store = useStore()
-  const name = computed(()=>{
-    return store.state.user.name
+  UserService.get()
+  const user = useUserStore()
+
+  //const store = useStore()
+  let content = ref()
+
+  const name = computed(() => {
+   // return store.state.user.name
   })
+/*
+  onMounted(() => {
+
+    UserService.getPublicContent().then((response) => {
+      content = response.data;
+    }, (error) => {
+      content =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+    })
+  })
+*/
+
+
 </script>

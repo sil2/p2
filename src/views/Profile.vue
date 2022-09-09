@@ -2,7 +2,7 @@
   <div class="container">
     <header class="jumbotron">
       <h3>
-        <strong>{{currentUser}}</strong> Profile
+        <strong>{{user.data.email}}</strong> Profile
       </h3>
     </header>
   
@@ -10,46 +10,15 @@
    
   </div>
 </template>
-<script>
-export default {
-  name: 'Profile',
-  computed: {
-    currentUser() {
+<script setup>
+import { storeToRefs } from 'pinia'
 
-      console.log('user',this.$store.state.auth.user)
-      return this.$store.state.auth.user;
-    }
-  },
-  mounted() {
-    if (!this.currentUser) {
-      this.$router.push('/login');
-    }
-  }
-};
+import { useUserStore } from '@/stores/user.store'
+import UserService from '@/services/user.service'
+import { reactive } from 'vue'
+
+UserService.get()
+const user = useUserStore()
+
+console.log('profile user',user)
 </script>
-
-<!--
-<template>
-    <div>
-      <div v-for="post in posts" v-bind:key="post.id">
-        <h2>{{ post.title }}</h2>
-        <p>{{ post.body }}</p>
-      </div>
-    </div>
-  </template>
-  
-
-  <script>
-    export default {
-      computed: {
-        posts() {
-             return this.$store.getters.posts;
-          },
-      },
-      created() {
-        this.$store.dispatch('loadPosts');  
-      },
-    }
-    </script>
-
-  -->

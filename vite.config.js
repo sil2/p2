@@ -8,6 +8,9 @@ import svgLoader from 'vite-svg-loader'
 
 
 export default defineConfig({
+  esbuild: {
+    drop: ['console', 'debugger'],
+  },
   server: {
       proxy: {
         '^/api/.*': {

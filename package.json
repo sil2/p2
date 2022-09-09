@@ -9,14 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@heroicons/vue": "^2.0.10",
-    "axios": "^0.27.2",
+    "feather-icons": "^4.29.0",
+    "mande": "^2.0.3",
+    "pinia": "^2.0.22",
     "vee-validate": "^4.6.7",
     "vue": "^3.2.37",
+    "vue-feather": "^2.0.0",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.5",
     "vue3-storage": "^0.1.11",
-    "vuex": "^4.0.2",
     "yup": "^0.32.11"
   },
   "devDependencies": {

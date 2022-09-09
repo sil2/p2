@@ -1,8 +1,7 @@
 //https://www.bezkoder.com/vue-3-authentication-jwt/
 
-import axios from 'axios';
+import { mande } from 'mande'
 import { useStorage } from "vue3-storage";
-import authHeader from './auth-header';
 
 const storage = useStorage();
 
@@ -14,42 +13,30 @@ class AuthService {
     if (storage.hasKey('auth_token')) { // todo expired storage.isExpire('auth_token')
       return storage.getStorageSync('auth_token');
     } else {
-      return axios
-        .post('/api/auth/get_token', {
-          email: user.email,
-          password: user.password
-        }, { headers: { Authorization: 'Bearer ' + (import.meta.env.VITE_GXA_API_TOKEN) } })
-        .then(response => {
 
+      const api = mande('/api/auth/get_token')
+      api.options.headers.Authorization = 'Bearer ' + import.meta.env.VITE_GXA_API_TOKEN
 
-          if (response.data.token) {
-            storage.setStorageSync('auth_token', response.data.token);
-          }
-
-          //return response.data;
-        });
+      console.log('user',user)
+      api.post(user).then(response => {
+        if (response.token) {
+          storage.setStorageSync('auth_token', response.token);
+          return response.token
+        } else {
+          throw new Error('No useer found');
+        }
+      });
     }
 
   }
-  
+
   async login(user) {
+      
+      this.getToken(user);
 
-    this.getToken(user);
-    //getToken();
-    //1 set request to get the token.
-    //2 save token into local storage.
-    //3 autorisationv request////
-    //console.log('VITE_GXA_URI',import.meta.env.VITE_GXA_URI)
-    console.log('auth_token',storage.getStorageSync('auth_token'))
-
-    const response = await axios
-      .get('/api/get',{ headers: authHeader() });
-    if (response.data) {
-      console.log('/api/get',response.data)
-      storage.setStorageSync('user', JSON.stringify(response.data));
-    }
-    return response.data;
+     
   }
+
   logout() {
     storage.removeStorageSync('user');
     storage.removeStorageSync('user');

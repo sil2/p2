@@ -1,18 +1,25 @@
 import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+import { createI18n } from 'vue-i18n'
+import { useStorage } from "vue3-storage";
+
+import Vue3Storage from "vue3-storage";
+import App from './App.vue'
+import router from './router'
+import UserService from '@/services/user.service'
+
 import './assets/index.css'
 import './assets/app.css'
 
-import { createI18n } from 'vue-i18n'
-
-import Vue3Storage from "vue3-storage";
-
 import en from '@/locales/en.json'
 import fr from '@/locales/fr.json'
+import VueFeather from 'vue-feather';
 
-import App from './App.vue'
-import router from './router'
 
-import store from './store'
+const storage = useStorage();
+const pinia = createPinia()
+
+
 
 const i18n = createI18n({
     locale: 'en',
@@ -26,12 +33,14 @@ const i18n = createI18n({
     }
   })
   
-
-
 createApp(App)
+.use(pinia)
 .use(router)
 .use(Vue3Storage)
 .use(i18n)
-.use(store)
-
+.component(VueFeather.name, VueFeather)
 .mount('#app')
+
+//if (storage.hasKey('auth_token')) {
+//  UserService.get()
+//}

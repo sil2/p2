@@ -3,7 +3,6 @@
     <div class="relative">
         <button @click="isOpen = !isOpen" class="flex border round items-center p-2 text-gray-600 rounded-md">
             selected option
-            <ChevronDownIcon class="h-6 w-6 text-red-500" />
         </button>
         <button v-if="isOpen" @click="isOpen = false" tabindex="-1"
             class="fixed inset-0 h-full w-full bg-black opacity-50 cursor-default"></button>
@@ -15,28 +14,18 @@
     </div>
 </template>
   
-  <script>
+  <script setup>
   
-  import { ChevronDownIcon } from '@heroicons/vue/24/solid'
-  
-  export default {
-      components: { ChevronDownIcon },
-      data() {
-          return {
-              isOpen: false
-          }
-      },
-      created() {
+    let isOpen = false
           const handleEscape = (e) => {
               if (e.key === 'Esc' || e.key === 'Escape') {
-                  this.isOpen = false
+                  isOpen = false
               }
           }
          // document.addEventListener('keydown', handleEscape)
          // this.$once('hook:beforeDestroy', () => {
          //     document.removeEventListener('keydown', handleEscape)
          // })
-      }
-  }
+   
   </script>
   

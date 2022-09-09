@@ -62,20 +62,11 @@
 </template>
 
    
-  <script>
+  <script setup>
   import { Form, Field, ErrorMessage } from "vee-validate";
   import * as yup from "yup";
-  import LogoSVG from '@/assets/Goli.svg';
+  import LogoSVG from '@/assets/logo.svg';
 
-  export default {
-    name: "Register",
-    components: {
-      Form,
-      Field,
-      ErrorMessage,
-      LogoSVG
-    },
-    data() {
       const schema = yup.object().shape({
         username: yup
           .string()
@@ -93,13 +84,12 @@
           .min(6, "Must be at least 6 characters!")
           .max(40, "Must be maximum 40 characters!"),
       });
-      return {
-        successful: false,
-        loading: false,
-        message: "",
-        schema,
-      };
-    },
+      
+      const  successful =  false
+      const loading= false
+      const message= ""
+     
+      /*
     computed: {
       loggedIn() {
         return this.$store.state.auth.status.loggedIn;
@@ -134,5 +124,5 @@
         );
       },
     },
-  };
+  };*/
   </script>

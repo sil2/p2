@@ -9,9 +9,8 @@
           {{ ' ' }}
 
           <router-link to="/register" v-slot="{ href, route, navigate, isActive, isExactActive }">
-          <a class="font-medium text-red-600 hover:text-red-500"
-            :href="href">{{$t('register')}}</a>
-        </router-link>
+            <a class="font-medium text-red-600 hover:text-red-500" :href="href">{{$t('register')}}</a>
+          </router-link>
 
         </p>
       </div>
@@ -49,63 +48,54 @@
   </div>
 </template>
 
-  <script>
-  import { Form, Field, ErrorMessage } from "vee-validate";
-  import LogoSVG from '@/assets/Goli.svg';
+<script setup>
+import { Form, Field, ErrorMessage } from "vee-validate";
+import LogoSVG from '@/assets/logo.svg';
+import * as yup from "yup";
+import { ref, computed, onMounted } from 'vue'
+import AuthService from '@/services/auth.service'
+import UserService from '@/services/user.service'
 
-  import * as yup from "yup";
-  export default {
-    name: "Login",
-    components: {
-      Form,
-      Field,
-      ErrorMessage,
-      LogoSVG
-    },
-    data() {
-      const schema = yup.object().shape({
-        email: yup
-        .string()
-        .required(this.$t('email is required!!!'))
-        .email(this.$t('Email is invalid!')),
-        password: yup.string().required(this.$t('password is required!!!')),
-      });
-      return {
-        loading: false,
-        message: "",
-        schema,
-      };
-    },
-    computed: {
-      loggedIn() {
-        return this.$store.state.auth.status.loggedIn;
-      },
-    },
-    created() {
-      if (this.loggedIn) {
-        this.$router.push("/profile");
-      }
-    },
-    methods: {
-      handleLogin(user) {
-        this.loading = true;
-        this.$store.dispatch("auth/login", user).then(
-          () => {
-            this.$router.push("/profile");
-          },
-          (error) => {
-            this.loading = false;
-            console.log('error',error)
-            this.message =
-              (error.response &&
-                error.response.data &&
-                error.response.data.message) ||
-              error.message ||
-              error.toString();
-          }
-        );
-      },
-    },
-  };
-  
-  </script>
+import { useStorage } from "vue3-storage";
+import { storeToRefs } from 'pinia'
+import { useUserStore } from '@/stores/user.store'
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const user = storeToRefs(useUserStore())
+
+const storage = useStorage();
+
+const schema = yup.object().shape({
+  email: yup
+    .string()
+    .required('email is required!!!') //vue-i18n
+    .email('Email is invalid!'),
+  password: yup.string().required('password is required!!!'),
+});
+
+const loading = ref(false)
+const message = ref()
+
+
+onMounted(async () => {
+
+  if (storage.hasKey('auth_token')) {
+
+    router.push("/");
+  }
+})
+
+function handleLogin(user) {
+  //loading = true;
+  console.log('user', user)
+  AuthService.login(user)
+  UserService.get()
+  console.log('torage.hasKey(auth_token)', storage.hasKey('auth_token'))
+
+  router.push("/profile")
+  console.log('profile')
+
+}
+
+</script>

@@ -1,29 +1,22 @@
 <template>
-  <div class="container-fluid mx-auto">
 
-    <Header></Header>
+    
 
-    <div class="p-1">
+    <div class="container">
+      <Header></Header>
       <router-view></router-view>
+      <Footer></Footer> 
     </div>
 
-    <Footer></Footer>
-  </div>
+   
 </template>
- 
-<script>
 
+ 
+<script setup>
 
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 
-export default {
-  name: "app",
-  components: {
-    Header,
-    Footer,
-  }
-};
 
 
 </script>

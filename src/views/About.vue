@@ -1,13 +1,8 @@
 <template>
   <div class="about">
-    <h1>About {{name}}</h1>
+    <h1>About {{user.data.email}}</h1>
 
-    <div>
-    <div v-for="post in posts" v-bind:key="post.id">
-      <h2>{{ post.title }}</h2>
-      <p>{{ post.body }}</p>
-    </div>
-  </div>
+   
 
     <div class="col-span-6 sm:col-span-3">
       <label for="first-name" class="block text-sm font-medium text-gray-700">First name</label>
@@ -25,23 +20,15 @@
 
 <script setup>
   import { computed,ref } from 'vue';
-  import {useStore} from 'vuex'
-  const store = useStore()
+  import { useUserStore } from '@/stores/user.store'
+  import UserService from '@/services/user.service'
 
-  const name = computed(()=>{
-    return store.state.user.name
-  })
-
-  const posts = computed(()=>{
-    return store.getters.posts;
-  })
-
-  store.dispatch('loadPosts');  
-  
+  UserService.get()
+  const user = useUserStore()
   const newName = ref('')
 
   function saveName(){
-    store.dispatch('saveName', newName.value)
+    user.data.email = newName.value
     newName.value = ''
   }
 </script>
