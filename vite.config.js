@@ -15,7 +15,7 @@ export default defineConfig({
       proxy: {
         '^/api/.*': {
 
-          target: "http://gxa.goli.local/",
+          target: "http://gxa.leon.wyn/",
           changeOrigin: true,
           secure: false,
           rewrite: (path) => path.replace(/^\/api/, '/api/partners')
@@ -23,7 +23,7 @@ export default defineConfig({
     },
     open: true,
     https: false, 
-    host: "p2.goli.local",
+    // host: "p2.goli.local",
     secure: false
   },
   plugins: [
