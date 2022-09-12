@@ -3,23 +3,24 @@
   <footer v-show="route.name!=='Login'" id="footer" class="sticky top-[100vh] mt-auto
  text-center  bottom-0 w-full px-6 py-6 text-white bg-red-600">
     <div class=" font-bold	 text-sm mb-3">Follow us</div>
-
-    <ul class="
+    <div>
+      <ul class="
           mt-8
 
-          flex space-y-0 flex-row items-center space-x-5">
-      <li><a href="#">
-          <vue-feather type="facebook"></vue-feather>
-        </a></li>
-      <li><a href="#">
-          <vue-feather type="instagram"></vue-feather>
-        </a></li>
-      <li><a href="#">
-          <vue-feather type="twitter"></vue-feather>
-        </a></li>
+          flex flex-row space-y-0 flex-row items-center space-x-5">
+        <li><a href="#">
+            <vue-feather type="facebook"></vue-feather>
+          </a></li>
+        <li><a href="#">
+            <vue-feather type="instagram"></vue-feather>
+          </a></li>
+        <li><a href="#">
+            <vue-feather type="twitter"></vue-feather>
+          </a></li>
 
-    </ul>
+      </ul>
 
+    </div>
     <div class=" text-sm mb-3">2022 Goli® Nutrition Inc. All Rights Reserved.</div>
 
     <div class="mb-3 text-center	border-solid	rounded p-2 border text-xs">DISCLAIMER: These statements have not been
