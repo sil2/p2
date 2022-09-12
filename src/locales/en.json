@@ -1,17 +1,19 @@
 {
-	"hello": "Hello",
+    "hello": "Hello",
     "language": "Language",
     "about": "About",
     "home": "Home",
     "profile": "Profile",
     "logout": "Logout",
-    "register": "Register",
-    "login": "Login",
+    "login": "Log in",
+    "login_button": "Sign in",
+    "login_text": "Access your dashboard",
+    "login_forgot_password": "Forgot password",
+    "login_signup": "Sign up.",
+    "login_signup_text": "Don’t have an account?",
     "email": "Email",
     "password": "Password",
     "en": "English",
     "fr": "Français",
-    "welcome-to":"Welcome To"
-
-
+    "welcome-to": "Welcome To"
 }
