@@ -1,6 +1,6 @@
 <template>
 
-  <footer v-show="route.name!=='Login'" id="footer" class="mt-auto
+  <footer v-show="route.name!=='Login'" id="footer" class="sticky top-[100vh] mt-auto
  text-center  bottom-0 w-full px-6 py-6 text-white bg-red-600">
     <div class=" font-bold	 text-sm mb-3">Follow us</div>
 

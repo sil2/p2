@@ -2,14 +2,14 @@
 
 
 
-  <div class="container mx-auto">
+  <div class="container ">
     <Header></Header>
     <Message message="123"></Message>
-    <router-view></router-view>
-    <Footer></Footer>
+    <div class="flex flex-col h-screen">
+      <router-view></router-view>
+      <Footer></Footer>
+    </div>
   </div>
-
-
 </template>
 
 
@@ -17,7 +17,12 @@
 
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
+import { useStorage } from "vue3-storage";
+import { ref } from 'vue'
+import i18n from '@/i18n.js';
 
+const storage = useStorage();
 
+i18n.global.locale.value = storage.hasKey('locale') ? storage.getStorageSync('locale') : 'fr'
 
 </script>

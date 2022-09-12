@@ -4,6 +4,7 @@
         px-6
         py-2
         mx-auto
+
         md:flex md:justify-between md:items-center
       ">
     <div class="flex items-center justify-between">
@@ -37,33 +38,32 @@
           md:flex md:space-y-0 md:flex-row md:items-center md:space-x-1 md:mt-0
         ">
 
-      <router-link @click="toggleNav" v-if="logged_in" tag="li" active-class="text-red-600 "
+      <router-link @click="toggleNav" v-if="storage.getStorageSync('auth_token')" tag="li" active-class="text-red-600 "
         inactive-class="text-gray-300" class=" hover:text-red-700  px-2 py-2  font-medium" to="/"
-        v-slot="{ href, route, navigate, isActive, isExactActive }">
+        v-slot="{ href, route, navigate, isExactActive }">
         {{$t('home')}}
       </router-link>
 
-      <router-link @click="toggleNav" v-if="logged_in" tag="li" active-class="text-red-600 "
+      <router-link @click="toggleNav" v-if="storage.getStorageSync('auth_token')" tag="li" active-class="text-red-600 "
         inactive-class="text-gray-300" class=" hover:text-red-700  px-2 py-2  font-medium" to="/profile"
-        v-slot="{ href, route, navigate, isActive, isExactActive }">
+        v-slot="{ href, route, navigate, isExactActive }">
         {{$t('profile')}}
       </router-link>
 
-      <router-link @click="toggleNav" v-if="!logged_in" tag="li" active-class="text-red-600 "
+      <router-link @click="toggleNav" v-if="!storage.getStorageSync('auth_token')" tag="li" active-class="text-red-600 "
         inactive-class="text-gray-300" class=" hover:text-red-700 h px-2 py-2 font-medium" to="/register"
-        v-slot="{ href, route, navigate, isActive, isExactActive }">
+        v-slot="{ href, route, navigate, isExactActive }">
         {{$t('register')}}
       </router-link>
 
-      <router-link @click="toggleNav" v-if="!logged_in" tag="li" active-class="text-red-600"
+      <router-link @click="toggleNav" v-if="!storage.getStorageSync('auth_token')" tag="li" active-class="text-red-600"
         inactive-class="text-gray-300" class=" hover:text-red-700  h px-2 py-2  font-medium" to="/login"
-        v-slot="{ href, route, navigate, isActive, isExactActive }">
+        v-slot="{ href, route, navigate, isExactActive }">
         {{$t('login')}}
       </router-link>
 
-      <a v-if="logged_in"
-        :class="[isActive?'text-red-600 text-white' : ' hover:text-red-700 ', 'px-2 py-2  font-medium']"
-        @click.prevent="logOut">
+      <a v-if="storage.getStorageSync('auth_token')" @click="toggleNav"
+        class="text-gray hover:text-red-700 px-2 py-2  font-medium" @click.prevent="logOut">
         {{$t('logout')}}
       </a>
 
@@ -79,10 +79,7 @@ import AuthService from '@/services/auth.service'
 import { useStorage } from "vue3-storage";
 const storage = useStorage();
 
-let logged_in = ref(false);
-if (storage.hasKey('auth_token')) {
-  logged_in = true
-}
+
 
 let showMenu = ref(false);
 const toggleNav = () => (showMenu.value = !showMenu.value);

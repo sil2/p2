@@ -8,7 +8,10 @@
     "register": "Register",
     "login": "Login",
     "email": "Email",
-    "password": "Password"
-    
+    "password": "Password",
+    "en": "English",
+    "fr": "Français",
+    "welcome-to":"Welcome To"
+
 
 }

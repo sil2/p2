@@ -9,7 +9,7 @@
             Or
             {{ ' ' }}
 
-            <router-link to="/register" v-slot="{ href, route, navigate, isActive, isExactActive }">
+            <router-link to="/register" v-slot="{ href, route, navigate, isExactActive }">
               <a class="font-medium text-red-600 hover:text-red-500" :href="href">{{$t('register')}}</a>
             </router-link>
 

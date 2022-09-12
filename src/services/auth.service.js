@@ -38,7 +38,7 @@ class AuthService {
   logout() {
     storage.removeStorageSync('auth_token');
 
-    router.go('/login');
+    router.push("/login");
   }
 
   register(user) {

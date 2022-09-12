@@ -2,9 +2,9 @@
 
   <GetCode></GetCode>
 
-  <div class="border border-solid rounded-lg drop-shadow-lg bg-white  border-white text-black p-2 m-2">
+  <div class=" flex-grow border border-solid rounded-lg drop-shadow-lg bg-white  border-white text-black p-2 m-2">
     <div class="text-xl mb-4 text-center">
-      WELCOME TO GOLI PARTNERS!
+      {{$t('welcome-to')}} GOLI PARTNERS!
     </div>
     <div clsss="text-sm text-center">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.

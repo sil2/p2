@@ -1,11 +1,11 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import { createI18n } from 'vue-i18n'
 import { useStorage } from "vue3-storage";
 
 import Vue3Storage from "vue3-storage";
 import App from '@/App.vue'
 import router from '@/router'
+import i18n from '@/i18n.js';
 
 import './assets/index.css'
 import './assets/app.css'
@@ -18,18 +18,6 @@ import MessageBox from "@/components/partials/MessageBox.vue";
 const storage = useStorage();
 const pinia = createPinia()
 
-const i18n = createI18n({
-  locale: 'en',
-  legacy: false,
-  globalInjection: true,
-  locale: "en",
-  fallbackLocale: "en",
-  messages: {
-    en,
-    fr
-  }
-})
-
 createApp(App)
   .component(VueFeather.name, VueFeather, MessageBox)
   .use(pinia)
@@ -37,3 +25,4 @@ createApp(App)
   .use(Vue3Storage)
   .use(i18n)
   .mount('#app')
+

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-grow   border border-solid rounded-lg drop-shadow-lg bg-white  border-white text-black p-2 m-2">
+  <div class=" flex-grow border border-solid rounded-lg drop-shadow-lg bg-white  border-white text-black p-2 m-2">
 
     <strong>{{user.data.email}}</strong> Profile
   </div>

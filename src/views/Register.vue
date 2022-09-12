@@ -9,7 +9,7 @@
           <p class="mt-2 text-center text-sm text-gray-600">
             Or
             {{ ' ' }}
-            <router-link to="/login" v-slot="{ href, route, navigate, isActive, isExactActive }">
+            <router-link to="/login" v-slot="{ href, route, navigate, isExactActive }">
               <a class="font-medium text-red-600 hover:text-red-500" :href="href">{{$t('login')}}</a>
             </router-link>
           </p>
