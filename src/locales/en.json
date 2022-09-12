@@ -2,6 +2,13 @@
 	"hello": "Hello",
     "language": "Language",
     "about": "About",
-    "home": "Home"
+    "home": "Home",
+    "profile": "Profile",
+    "logout": "Logout",
+    "register": "Register",
+    "login": "Login",
+    "email": "Email",
+    "password": "Password"
+    
 
 }

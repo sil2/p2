@@ -1,29 +1,33 @@
 <template>
-  <div class="container">
-    <header class="jumbotron">
-      <Dropdown></Dropdown>
-      <h3>{{ content }}</h3>
-    </header>
-  </div>
 
+  <GetCode></GetCode>
+
+  <div class="border border-solid rounded-lg drop-shadow-lg bg-white  border-white text-black p-2 m-2">
+    <div class="text-xl mb-4 text-center">
+      WELCOME TO GOLI PARTNERS!
+    </div>
+    <div clsss="text-sm text-center">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </div>
+  </div>
 </template>
 
 <script setup>
-  import UserService from "@/services/user.service";
-  import { ref, computed,onMounted } from 'vue'
-  import Dropdown from "@/components/partials/Dropdown.vue";
-  import { useUserStore } from '@/stores/user.store'
+import UserService from "@/services/user.service";
+import { ref, computed, onMounted } from 'vue'
+import GetCode from "@/components/partials/GetCode.vue";
+import { useUserStore } from '@/stores/user.store'
+
+UserService.get()
+const user = useUserStore()
 
 
-  UserService.get()
-  const user = useUserStore()
+//const store = useStore()
+let content = ref()
 
-  //const store = useStore()
-  let content = ref()
-
-  const name = computed(() => {
-   // return store.state.user.name
-  })
+const name = computed(() => {
+  // return store.state.user.name
+})
 /*
   onMounted(() => {
 

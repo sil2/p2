@@ -2,60 +2,34 @@
 //https://www.bezkoder.com/vue-3-authentication-jwt/
 
 import { useUserStore } from '@/stores/user.store'
-import { storeToRefs } from 'pinia'
-import { mande } from 'mande'
-import AuthService from '@/services/auth.service'
 import { useStorage } from "vue3-storage";
-import { reactive } from 'vue'
 import { apiRequest } from '@/helpers/api-request';
 
 const storage = useStorage();
 
 class UserService {
 
-  get() {
+  async get() {
 
-    try {   
+    try {
 
-    //  const { user } = storeToRefs(useUserStore())
       const user = useUserStore()
-    // const  user  = storeToRefs(useUserStore())
-      console.log('UserService 1 ', user)
-      // console.log('UserService 2 ', user.$state)
-      AuthService.getToken();
-
       if (user.logged_in == 0) {
-      console.log('ApiRequest')
+        console.log('user.service.js request started ', storage.getStorageSync('auth_token'))
 
-      apiRequest.get('/api/get').then(response => {
-
+        const response = await apiRequest.get('/api/get')
         console.log('UserService 3 response ', response)
-        /* * /
-         user.$patch({
-           data: response,
-           logged_in: 1,
-         })
-         /**/
 
         user.data = response
         user.logged_in = 1
-        /**/
-        console.log('UserService 4', user)
 
-
-        console.log('UserService get 2', user)
-        // return user;
+        return user
       }
-      )
-
-      // showTooltip(`Welcome back ${this.userData.name}!`)
-       }
     } catch (error) {
 
-      console.log('error', error)
-      //  showTooltip(error)
-      // let the form component display the error
-      return error
+      console.log('user.service.js (29) error', error);
+
+      throw error
     }
   }
 }

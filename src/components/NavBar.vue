@@ -1,101 +1,95 @@
 <template>
 
-  <div class="">
-    <nav class="
-        container
+  <nav class="
         px-6
         py-2
         mx-auto
         md:flex md:justify-between md:items-center
       ">
-      <div class="flex items-center justify-between">
-        <router-link to="/">
-          <LogoSVG class="h-18 w-auto text-center text-white	 fill-current " />
-        </router-link>
-        <!-- Mobile menu button -->
-        <div @click="toggleNav" class="flex md:hidden">
-          <button type="button" class="
+    <div class="flex items-center justify-between">
+      <router-link to="/">
+        <LogoSVG class="h-18 w-auto text-center text-white	 fill-current " />
+      </router-link>
+      <!-- Mobile menu button -->
+      <div @click="toggleNav" class="flex md:hidden">
+        <button type="button" class="
               text-red-600
               hover:text-red-400
-              focus:outline-none focus:text-red-400
+              focus:outline-none focus:text-red-600
             ">
-            <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current">
-              <path fill-rule="evenodd"
-                d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z">
-              </path>
-            </svg>
-          </button>
-        </div>
+          <svg viewBox="0 0 24 24" class="w-6 h-6 fill-current">
+            <path fill-rule="evenodd"
+              d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z">
+            </path>
+          </svg>
+        </button>
       </div>
+    </div>
 
-      <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
-      <ul :class="showMenu ? 'flex' : 'hidden'" class="
+    <!-- Mobile Menu open: "block", Menu closed: "hidden" -->
+    <ul :class="showMenu ? 'flex' : 'hidden'" class="
           flex-col
           mt-8
           space-y-2
+          bg-white
+          p-2
+          border rounded-lg
           md:flex md:space-y-0 md:flex-row md:items-center md:space-x-1 md:mt-0
         ">
 
-        <router-link to="/" v-slot="{ href, route, navigate, isActive, isExactActive }">
-          <a :class="[isActive?'bg-red-900 text-white' : 'text-gray-300 hover:bg-red-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']"
-            :href="href" @click="navigate">{{$t('home')}}</a>
-        </router-link>
+      <router-link @click="toggleNav" v-if="logged_in" tag="li" active-class="text-red-600 "
+        inactive-class="text-gray-300" class=" hover:text-red-700  px-2 py-2  font-medium" to="/"
+        v-slot="{ href, route, navigate, isActive, isExactActive }">
+        {{$t('home')}}
+      </router-link>
 
-        <router-link to="/about" v-slot="{ href, route, navigate, isActive, isExactActive }">
-          <a :class="[isActive?'bg-red-900 text-white' : 'text-gray-300 hover:bg-red-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']"
-            :href="href" @click="navigate">{{$t('about')}}</a>
-        </router-link>
+      <router-link @click="toggleNav" v-if="logged_in" tag="li" active-class="text-red-600 "
+        inactive-class="text-gray-300" class=" hover:text-red-700  px-2 py-2  font-medium" to="/profile"
+        v-slot="{ href, route, navigate, isActive, isExactActive }">
+        {{$t('profile')}}
+      </router-link>
 
+      <router-link @click="toggleNav" v-if="!logged_in" tag="li" active-class="text-red-600 "
+        inactive-class="text-gray-300" class=" hover:text-red-700 h px-2 py-2 font-medium" to="/register"
+        v-slot="{ href, route, navigate, isActive, isExactActive }">
+        {{$t('register')}}
+      </router-link>
 
-          <router-link to="/register" v-slot="{ href, route, navigate, isActive, isExactActive }">
-            <a v-if="!logged_in" :class="[isActive?'bg-red-900 text-white' : 'text-gray-300 hover:bg-red-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']"
-              :href="href" @click="navigate">{{$t('register')}}</a>
-          </router-link>
+      <router-link @click="toggleNav" v-if="!logged_in" tag="li" active-class="text-red-600"
+        inactive-class="text-gray-300" class=" hover:text-red-700  h px-2 py-2  font-medium" to="/login"
+        v-slot="{ href, route, navigate, isActive, isExactActive }">
+        {{$t('login')}}
+      </router-link>
 
-          <router-link to="/login" v-slot="{ href, route, navigate, isActive, isExactActive }">
-            <a :class="[isActive?'bg-red-900 text-white' : 'text-gray-300 hover:bg-red-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']"
-              :href="href" @click="navigate">{{$t('login')}}</a>
-          </router-link>
-       
+      <a v-if="logged_in"
+        :class="[isActive?'text-red-600 text-white' : ' hover:text-red-700 ', 'px-2 py-2  font-medium']"
+        @click.prevent="logOut">
+        {{$t('logout')}}
+      </a>
 
-          <router-link to="/profile" v-slot="{ href, route, navigate, isActive, isExactActive }">
-            <a v-if="!logged_in" :class="[isActive?'bg-red-900 text-white' : 'text-gray-300 hover:bg-red-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']"
-              :href="href" @click="navigate">Profile</a>
-          </router-link>
-
-          
-          <a v-if="!logged_in" :class="[isActive?'bg-red-900 text-white' : 'text-gray-300 hover:bg-red-700 hover:text-white', 'px-3 py-2 rounded-md text-sm font-medium']"  @click.prevent="logOut">
-            {{$t('logoout')}}
-          </a>
-      </ul>
-    </nav>
-  </div>
+    </ul>
+  </nav>
 </template>
 
 <!-- https://www.bezkoder.com/vue-3-authentication-jwt/ -->
 <script setup>
 import { ref } from 'vue';
 import LogoSVG from '@/assets/logo.svg';
-import { storeToRefs } from 'pinia'
-import { useUserStore } from '@/stores/user.store'
+import AuthService from '@/services/auth.service'
 import { useStorage } from "vue3-storage";
-
 const storage = useStorage();
-const user = storeToRefs(useUserStore())
 
 let logged_in = ref(false);
 if (storage.hasKey('auth_token')) {
-  logged_in =true
+  logged_in = true
 }
 
 let showMenu = ref(false);
 const toggleNav = () => (showMenu.value = !showMenu.value);
 
-//const user = computed(() => useAuthStore.user)
 
 function logOut() {
-  // this.$store.dispatch('auth/logout');
-  this.$router.push('/login');
+  AuthService.logout();
 }
 
 

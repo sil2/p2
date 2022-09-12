@@ -1,13 +1,7 @@
 <template>
-  <div class="container">
-    <header class="jumbotron">
-      <h3>
-        <strong>{{user.data.email}}</strong> Profile
-      </h3>
-    </header>
-  
-  
-   
+  <div class="flex-grow   border border-solid rounded-lg drop-shadow-lg bg-white  border-white text-black p-2 m-2">
+
+    <strong>{{user.data.email}}</strong> Profile
   </div>
 </template>
 <script setup>
@@ -20,5 +14,5 @@ import { reactive } from 'vue'
 UserService.get()
 const user = useUserStore()
 
-console.log('profile user',user)
+console.log('profile user', user)
 </script>
