@@ -66,7 +66,7 @@
           {{ message }}
         </div>
 
-        <p class="mt-2 text-center text-sm text-red-600">
+        <p class="mt-2 text-center text-sm font-light text-red-600">
           {{ $t("login_signup_text") }}
           <router-link to="/register" v-slot="{ href, route, navigate, isExactActive }">
             <a class="font-bold underline hover:text-red-500" :href="href">{{ $t("login_signup") }}</a>
