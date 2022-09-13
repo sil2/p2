@@ -1,9 +1,9 @@
 <template>
   <div
     class="flex px-5 items-center  flex-row text-sm border border-solid rounded-md drop-shadow-lg bg-red-600  border-red-600 text-white p-2 m-2">
-    <div class="flex-auto	" v-html="code_text"></div>
-    <div class="flex-initial "><button type="button" class=" bg-white p-2 border rounded text-red-600">Copy
-        code</button>
+    <div class="flex-auto	" v-html="$t('test_code_box')"></div>
+    <div class="flex-initial "><button type="button"
+        class=" bg-white p-2 border rounded text-red-600">{{$t('copy_code')}}</button>
     </div>
   </div>
 
