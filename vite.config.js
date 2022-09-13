@@ -1,43 +1,46 @@
-import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { defineConfig, loadEnv } from 'vite';
 import path from 'path'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'url'
 import vueI18n from '@intlify/vite-plugin-vue-i18n'
 import svgLoader from 'vite-svg-loader'
 
+export default ({ mode }) => {
+  process.env = Object.assign(process.env, loadEnv(mode, process.cwd(), ''));
 
-export default defineConfig({
-  esbuild: {
-    drop: ['console', 'debugger'],
-  },
-  server: {
+  return defineConfig({
+    esbuild: {
+      drop: ['console', 'debugger'],
+    },
+    server: {
       proxy: {
         '^/api/.*': {
 
-          target: "http://gxa.leon.wyn/",
+          target: process.env.VITE_GXA_URI,
           changeOrigin: true,
           secure: false,
           rewrite: (path) => path.replace(/^\/api/, '/api/partners')
         },
+      },
+      open: true,
+      https: false,
+      // host: "p2.goli.local",
+      secure: false
     },
-    open: true,
-    https: false, 
-    // host: "p2.goli.local",
-    secure: false
-  },
-  plugins: [
-    vue(),
-    svgLoader(),
-    vueI18n({
-      /* options */
-      // locale messages resourece pre-compile option
-      include: resolve(dirname(fileURLToPath(import.meta.url)), './src/locales/**'),
-    }),
-  ],
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
+    plugins: [
+      vue(),
+      svgLoader(),
+      vueI18n({
+        /* options */
+        // locale messages resourece pre-compile option
+        include: resolve(dirname(fileURLToPath(import.meta.url)), './src/locales/**'),
+      }),
+    ],
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+      },
     },
-  },
-})
+  })
+}

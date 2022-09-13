@@ -1,7 +1,11 @@
 <template>
   <div class=" flex-grow border border-solid rounded-lg drop-shadow-lg bg-white  border-white text-black p-2 m-2">
 
-    <strong>{{user.data.email}}</strong> Profile
+    <strong>{{user.data.email}}</strong>
+
+    <div class="tet-xm text-gray-400">
+      <pre>{{user.data}}</pre>
+    </div>
   </div>
 </template>
 <script setup>

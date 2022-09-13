@@ -1,8 +1,27 @@
 {
-	"hello": "Bonjour",
-    "language": "Language",
-    "about": "AboutFR",
-    "home": "homeFR",
-    "welcome-to":"Bienvenue à"
+    "hello": "Bonjour",
+    "language": "Langue",
+    "about": "About",
+    "home": "Page d'accueil",
+    "profile": "Profil",
+    "logout": "Se déconnecter",
+    "login": "Connexion",
+    "login_button": "S'identifier",
+    "login_text": "Accédez à votre tableau de bord",
+    "login_forgot_password": "Mot de passe oublié",
+    "login_signup": "S'inscrire",
+    "login_signup_text": "Vous n'avez pas de compte ?",
+    "email": "Email",
+    "password": "Mot de passe",
+    "en": "English",
+    "fr": "Français",
+    "welcome-to": "Bienvenue à",
+    "register":"S'inscrire",
+    "terms-conditions":"Termes et conditions",
+    "sale":"Vente",
+    "settings":"Réglages",
+    "follow-us":"Suivez-nous",
+    "All Rights Reserved":"Tous les droits sont réservés",
+    "footer_disclamer":"AVIS DE NON-RESPONSABILITÉ : Ces déclarations n'ont pas été évaluées par la Food and Drug Administration. Ce produit n'est pas destiné à diagnostiquer, traiter, guérir ou prévenir toute maladie. Les opinions et les conseils nutritionnels exprimés par Goli Nutrition Inc. ne sont pas destinés à fournir des conseils médicaux. Veuillez toujours consulter votre fournisseur de soins de santé si vous prenez des médicaments, si vous êtes ou pourriez être enceinte ou si vous avez un problème de santé. Les résultats individuels peuvent varier."
 
 }

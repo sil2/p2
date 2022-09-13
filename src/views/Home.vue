@@ -9,6 +9,8 @@
     <div clsss="text-sm text-center">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     </div>
+
+    <div><img src="@/assets/dash.png" /></div>
   </div>
 </template>
 

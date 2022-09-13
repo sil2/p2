@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="border border-solid rounded-lg drop-shadow-lg bg-white border-white text-black p-2 m-2"
-  >
+  <div class="border border-solid rounded-lg drop-shadow-lg bg-white border-white text-black p-2 m-2">
     <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div class="w-full max-w-md space-y-8">
         <div class="">
@@ -10,52 +8,29 @@
           </h2>
           <p class="mt-2 text-center text-sm text-red-600">{{ $t("login_text") }}</p>
         </div>
-        <Form
-          @submit="handleLogin"
-          :validation-schema="schema"
-          class="mt-8 space-y-6"
-          action="#"
-          method="POST"
-        >
+        <Form @submit="handleLogin" :validation-schema="schema" class="mt-8 space-y-6" action="#" method="POST">
           <Field type="hidden" name="remember" value="true" />
 
           <div class="-space-y-px rounded-md shadow-sm">
             <label for="email-address" class="sr-only">{{ $t("email") }}</label>
-            <Field
-              value="oleg2@goli.com"
-              id="email-address"
-              name="email"
-              type="email"
-              autocomplete="email"
-              required=""
+            <Field value="oleg2@goli.com" id="email-address" name="email" type="email" autocomplete="email" required=""
               class="relative block w-full appearance-none rounded border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm"
-              :placeholder="$t('email')"
-            />
+              :placeholder="$t('email')" />
             <ErrorMessage name="email" class="pt-1 text-red-500 text-xs" />
           </div>
           <div class="-space-y-px rounded-md shadow-sm">
             <label for="password" class="sr-only">{{ $t("password") }}</label>
-            <Field
-              id="password"
-              value="123123"
-              name="password"
-              type="password"
-              autocomplete="password"
-              required=""
+            <Field id="password" value="123123" name="password" type="password" autocomplete="password" required=""
               class="relative block w-full appearance-none rounded border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-red-500 focus:outline-none focus:ring-red-500 sm:text-sm"
-              :placeholder="$t('password')"
-            />
+              :placeholder="$t('password')" />
             <ErrorMessage name="password" class="pt-1 text-red-500 text-xs" />
           </div>
           <div class="mt-2 text-center text-sm underline">
             <a href="#"> {{ $t("login_forgot_password") }}</a>
           </div>
           <div class="flex justify-center">
-            <button
-              :disabled="loading"
-              type="submit"
-              class="group relative rounded-md border border-transparent bg-red-600 py-2 px-10 text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
-            >
+            <button :disabled="loading" type="submit"
+              class="group relative rounded-md border border-transparent bg-red-600 py-2 px-10 text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
               <span v-show="loading" class="spinner-border spinner-border-sm"></span>
               <span class="absolute inset-y-0 left-0 flex items-center pl-3"> </span>
               {{ $t("login_button") }}
@@ -118,16 +93,16 @@ onMounted(async () => {
 
 async function handleLogin(user) {
   try {
-    console.log("Login.vue (93) handleLogin");
+    console.log('Login.vue (378337) handleLogin');
 
     const token = await AuthService.getToken(user);
-    console.log("Login.vue (94) token", token);
+    console.log('Login.vue (550459) token', token);
 
     const user2 = UserService.get();
 
     console.log("Login.vue (967422) user2", user2);
 
-    router.push("/profile");
+    router.push("/");
   } catch (error) {
     console.log("handleLogin error", error);
 
