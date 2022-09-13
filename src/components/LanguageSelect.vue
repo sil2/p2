@@ -1,5 +1,5 @@
 <template>
-  <select class="border-solid bg-white-600 p-2 m-1 text-black bg-gray-200 border rounded-lg" @change="setLocale"
+  <select class="border-solid p-2 m-1 text-black bg-gray-200 border rounded-lg" @change="setLocale"
     v-model="$i18n.locale">
     <option :selected="[$i18n.locale==locale ? 'selected' : '']" v-for="locale in $i18n.availableLocales" :key="locale"
       :value="locale">{{$t(locale)}}</option>
