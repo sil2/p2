@@ -2,7 +2,6 @@
 
 import { mande } from 'mande'
 import { useStorage } from "vue3-storage";
-import router from '@/router'
 
 const storage = useStorage();
 

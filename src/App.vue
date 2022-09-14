@@ -19,7 +19,6 @@ import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 import { useStorage } from "vue3-storage";
 import { ref } from 'vue'
-import i18n from '@/i18n.js';
 
 const storage = useStorage();
 

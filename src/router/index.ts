@@ -1,12 +1,11 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Home from '@/views/Home.vue'
-import About from '@/views/About.vue'
-import Profile from '@/views/Profile.vue'
-import Login from '@/views/Login.vue'
-import Register from '@/views/Register.vue'
-import { useStorage } from "vue3-storage";
+import { createRouter, createWebHistory } from 'vue-router';
+import { setupLayouts } from 'virtual:generated-layouts';
 
-const storage = useStorage();
+import Home from '@/pages/Home.vue';
+import About from '@/pages/About.vue';
+import Profile from '@/pages/Profile.vue';
+import Login from '@/pages/Login.vue';
+import Register from '@/pages/Register.vue';
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
@@ -16,16 +15,16 @@ const routes = [
   { path: '/register', name: 'Register', component: Register }
 ]
 
+export let extendedRoutes: any = null;
+
 const router = createRouter({
   history: createWebHistory(),
-  routes
-})
-
+  routes,
+});
 
 router.beforeEach(async (to) => {
-
   // redirect to login page if not logged in and trying to access a restricted page
-  const publicPages = ['/login',  '/about', '/register'];
+  const publicPages = ['/login', '/about', '/register'];
 
   const authRequired = !publicPages.includes(to.path);
 
@@ -33,5 +32,6 @@ router.beforeEach(async (to) => {
     return '/login';
   }
 });
+
 
 export default router
